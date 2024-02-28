@@ -25,6 +25,8 @@ class Game:
         self.load_data()
     def load_data(self):
         game_folder = path.dirname(__file__)
+        img_folder = path.join(game_folder, 'images')
+        self.player_img = pg.image.load(path.join(img_folder, 'jake.png')).convert_alpha()
         self.map_data = []
         '''
         The with statement is a context manager in Python. 
@@ -39,6 +41,8 @@ class Game:
     def new(self):
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
+        self.coins = pg.sprite.Group()
+        self.power_ups = pg.sprite.Group()
         self.potions = pg.sprite.Group()
         # self.player = Player(self, 10, 10)
         # self.all_sprites.add(self.player)
@@ -55,6 +59,10 @@ class Game:
                     self.player = Player(self, col, row)
                 if tile == 'z':
                      self.speedpotion = Potions (self, row, col)
+                if tile == 'C':
+                    Coin(self, col, row)
+                if tile == 'U':
+                    PowerUp(self, col, row)
     def run(self):
         self.playing = True
         while self.playing:
@@ -118,3 +126,4 @@ while True:
     g.new()
     g.run()
     # g.show_go_screen()
+
