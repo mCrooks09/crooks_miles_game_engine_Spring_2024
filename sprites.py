@@ -66,7 +66,7 @@ class Player(pg.sprite.Sprite):
         hits = pg.sprite.spritecollide(self, group, kill)
         if hits:
             if str(hits[0].__class__.__name__) == "Coin":
-                self.moneybag += 1
+                self.moneybag
 
     #UPDATE THE UPDATE
     def update(self):
@@ -141,7 +141,7 @@ class PowerUp(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(YELLOW)
+        self.image.fill(BLUE)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y

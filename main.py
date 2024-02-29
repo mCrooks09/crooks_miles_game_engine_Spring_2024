@@ -126,4 +126,3 @@ while True:
     g.new()
     g.run()
     # g.show_go_screen()
-
