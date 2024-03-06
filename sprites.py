@@ -17,19 +17,20 @@ class Player(pg.sprite.Sprite):
         self.vx, self.vy = 0, 0
         self.x = x * TILESIZE
         self.y = y * TILESIZE
-        
+        self.moneybag = 0
+        self.speed = 300
 
     def get_keys(self):
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
         if keys[pg.K_LEFT] or keys[pg.K_a]:
-            self.vx = -PLAYER_SPEED
+            self.vx = -self.speed
         if keys[pg.K_RIGHT] or keys[pg.K_d]:
-            self.vx = PLAYER_SPEED
+            self.vx = self.speed
         if keys[pg.K_UP] or keys[pg.K_w]:
-            self.vy = -PLAYER_SPEED
+            self.vy = -self.speed
         if keys[pg.K_DOWN] or keys[pg.K_s]:
-            self.vy = PLAYER_SPEED
+            self.vy = self.speed
     def collide_with_walls(self, dir):
         if dir == 'x':
             hits = pg.sprite.spritecollide(self, self.game.walls, False )
@@ -51,10 +52,10 @@ class Player(pg.sprite.Sprite):
                 self.rect.y = self.y
 
     def speed_potion(self):
-        hits = pg.sprite.spritecollide(self, self.game.speedpotion, False)
+        hits = pg.sprite.spritecollide(self, self.game.potion, False)
         if hits:
             #increase speed
-            PLAYER_SPEED + 200
+            self.speed += 3000
 
 
     # old motion
@@ -66,7 +67,9 @@ class Player(pg.sprite.Sprite):
         hits = pg.sprite.spritecollide(self, group, kill)
         if hits:
             if str(hits[0].__class__.__name__) == "Coin":
-                self.moneybag
+                self.moneybag += 1
+            if str(hits[0].__class__.__name__) == "Potion":
+                self.speed += 200       
 
     #UPDATE THE UPDATE
     def update(self):
@@ -80,6 +83,7 @@ class Player(pg.sprite.Sprite):
         self.rect.y = self.y
         self.collide_with_walls('y')
         self.collide_with_group(self.game.coins, True)
+        self.collide_with_group(self.game.potions, True)
         self.collide_with_group(self.game.power_ups, True)
         # self.rect.x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE

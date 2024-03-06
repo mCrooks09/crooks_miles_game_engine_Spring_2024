@@ -1,6 +1,11 @@
 # This file was created by: Miles Crooks
 
 # we are importing other game files
+'''
+diferent enemies
+game start/game over 
+shoot enemies
+'''
 import pygame as pg
 from settings import *
 from sprites import *
