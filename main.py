@@ -50,6 +50,8 @@ class Game:
         self.power_ups = pg.sprite.Group()
         self.moneybag = pg.sprite.Group()
         self.potions = pg.sprite.Group()
+        self.mobs = pg.sprite.Group()
+        self.hitpointsaaaaa = pg.sprite.Group()
         # self.player = Player(self, 10, 10)
         # self.all_sprites.add(self.player)
         # for x in range(10, 20):
@@ -69,6 +71,9 @@ class Game:
                     Coin(self, col, row)
                 if tile == 'U':
                     PowerUp(self, col, row)
+                if tile == 'M':
+                    Mob(self, col, row)
+
     def run(self):
         self.playing = True
         while self.playing:

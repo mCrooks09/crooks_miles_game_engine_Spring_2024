@@ -69,7 +69,18 @@ class Player(pg.sprite.Sprite):
             if str(hits[0].__class__.__name__) == "Coin":
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
-                self.speed += 325 
+                self.speed += 305 
+            if str(hits[0].__class__.__name__) == "PowerUp":
+                print(hits[0].__class__.__name__)
+                effect = (POWER_UP_EFFECTS)
+                print(effect)
+                if effect == "Invincible":
+                    self.status = "Invincible"
+            if str(hits[0].__class__.__name__) == "Mob":
+                 print(hits[0].__class__.__name__)
+                 print("Collided with mob")
+                 self.hitpoints -= 1       
+                 
 
     #UPDATE THE UPDATE
     def update(self):
@@ -86,8 +97,24 @@ class Player(pg.sprite.Sprite):
         self.collide_with_group(self.game.potions, True)
         self.collide_with_group(self.game.moneybag, True)
         self.collide_with_group(self.game.power_ups, True)
+        self.collide_with_group(self.game.mobs, False)
         # self.rect.x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
+
+class Mob(pg.sprite.Sprite):
+    def __init__(self, game, x, y):
+        self.groups = game.all_sprites, game.mobs
+        pg.sprite.Sprite.__init__(self, self.groups)
+        self.game = game
+        self.image = pg.Surface((TILESIZE, TILESIZE))
+        self.image.fill(PINK)
+        self.rect = self.image.get_rect()
+        self.x = x
+        self.y = y
+        self.vx, self.vy = 100, 100
+        self.x = x * TILESIZE
+        self.y = y * TILESIZE
+        self.speed = 1
 
 class Wall(pg.sprite.Sprite):
     def __init__(self, game, x, y):
