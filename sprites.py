@@ -52,10 +52,10 @@ class Player(pg.sprite.Sprite):
                 self.rect.y = self.y
 
     def speed_potion(self):
-        hits = pg.sprite.spritecollide(self, self.game.potion, False)
+        hits = pg.sprite.spritecollide(self, self.game.potion, True)
         if hits:
             #increase speed
-            self.speed += 3000
+            self.speed += 500
 
 
     # old motion
@@ -68,8 +68,8 @@ class Player(pg.sprite.Sprite):
         if hits:
             if str(hits[0].__class__.__name__) == "Coin":
                 self.moneybag += 1
-            if str(hits[0].__class__.__name__) == "Potion":
-                self.speed += 200       
+            if str(hits[0].__class__.__name__) == "Potions":
+                self.speed += 325 
 
     #UPDATE THE UPDATE
     def update(self):
@@ -84,6 +84,7 @@ class Player(pg.sprite.Sprite):
         self.collide_with_walls('y')
         self.collide_with_group(self.game.coins, True)
         self.collide_with_group(self.game.potions, True)
+        self.collide_with_group(self.game.moneybag, True)
         self.collide_with_group(self.game.power_ups, True)
         # self.rect.x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
@@ -111,7 +112,7 @@ class Wall(pg.sprite.Sprite):
         #     self.speed *= -1
             
 
-# 
+# create potions class
 class Potions(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.potions
@@ -125,6 +126,7 @@ class Potions(pg.sprite.Sprite):
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
 
+# create class coin
 class Coin(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.coins
@@ -138,7 +140,7 @@ class Coin(pg.sprite.Sprite):
         self.rect.x = x * TILESIZE
         self.rect.y = y * TILESIZE
 
-
+#create class powerup
 class PowerUp(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.power_ups

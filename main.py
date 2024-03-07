@@ -48,6 +48,7 @@ class Game:
         self.walls = pg.sprite.Group()
         self.coins = pg.sprite.Group()
         self.power_ups = pg.sprite.Group()
+        self.moneybag = pg.sprite.Group()
         self.potions = pg.sprite.Group()
         # self.player = Player(self, 10, 10)
         # self.all_sprites.add(self.player)
@@ -63,7 +64,7 @@ class Game:
                 if tile == 'p':
                     self.player = Player(self, col, row)
                 if tile == 'z':
-                     self.speedpotion = Potions (self, row, col)
+                     self.speedpotion = Potions (self, col, row)
                 if tile == 'C':
                     Coin(self, col, row)
                 if tile == 'U':
@@ -94,10 +95,19 @@ class Game:
         for y in range(0, HEIGHT, TILESIZE):
             pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
+    def draw_text(self, surface, text, size, color, x, y):
+        font_name = pg.font.match_font('arial')
+        font = pg.font.Font(font_name, size)
+        text_surface = font.render(text, True, color)
+        text_rect = text_surface.get_rect()
+        text_rect.topleft = (x*TILESIZE,y*TILESIZE)
+        surface.blit(text_surface, text_rect)
+
     def draw(self):
         self.screen.fill(BGCOLOR)
         self.draw_grid()
         self.all_sprites.draw(self.screen)
+        self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
         pg.display.flip()
 
     def events(self):
