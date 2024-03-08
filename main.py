@@ -51,7 +51,7 @@ class Game:
         self.moneybag = pg.sprite.Group()
         self.potions = pg.sprite.Group()
         self.mobs = pg.sprite.Group()
-        self.hitpointsaaaaa = pg.sprite.Group()
+        self.hitpoints = pg.sprite.Group()
         # self.player = Player(self, 10, 10)
         # self.all_sprites.add(self.player)
         # for x in range(10, 20):
@@ -94,11 +94,11 @@ class Game:
     def update(self):
         self.all_sprites.update()
     
-    def draw_grid(self):
-        for x in range(0, WIDTH, TILESIZE):
-            pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
-        for y in range(0, HEIGHT, TILESIZE):
-            pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
+    # def draw_grid(self):
+        # for x in range(0, WIDTH, TILESIZE):
+            # pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
+        # for y in range(0, HEIGHT, TILESIZE):
+            # pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
     def draw_text(self, surface, text, size, color, x, y):
         font_name = pg.font.match_font('arial')
@@ -108,9 +108,10 @@ class Game:
         text_rect.topleft = (x*TILESIZE,y*TILESIZE)
         surface.blit(text_surface, text_rect)
 
+# coin counter in corner
     def draw(self):
         self.screen.fill(BGCOLOR)
-        self.draw_grid()
+        # self.draw_grid()
         self.all_sprites.draw(self.screen)
         self.draw_text(self.screen, str(self.player.moneybag), 64, WHITE, 1, 1)
         pg.display.flip()

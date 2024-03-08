@@ -16,7 +16,5 @@ PINK = (255, 192, 203)
 
 PLAYER_SPEED = 300
 
-POWER_UP_EFFECTS = ["I can fly", "I'm invincible", "I'm bulletproof"]
-# Player settings
-# PLAYER_SPEED = 300
+
 

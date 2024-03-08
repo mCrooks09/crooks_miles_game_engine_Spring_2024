@@ -4,6 +4,8 @@
 import pygame as pg
 from settings import *
 
+vec =pg.math.Vector2
+
 # write a player class
 class Player(pg.sprite.Sprite):
     def __init__(self, game, x, y):
@@ -19,6 +21,10 @@ class Player(pg.sprite.Sprite):
         self.y = y * TILESIZE
         self.moneybag = 0
         self.speed = 300
+        self.status = ""
+        self.hitpoints = 100
+        self.cooling = False
+        self.pos = vec(0,0)
 
     def get_keys(self):
         self.vx, self.vy = 0, 0
@@ -70,16 +76,16 @@ class Player(pg.sprite.Sprite):
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
-            if str(hits[0].__class__.__name__) == "PowerUp":
-                print(hits[0].__class__.__name__)
-                effect = (POWER_UP_EFFECTS)
-                print(effect)
-                if effect == "Invincible":
-                    self.status = "Invincible"
+            # if str(hits[0].__class__.__name__) == "PowerUp":
+                # print(hits[0].__class__.__name__)
+                # effect = (POWER_UP_EFFECTS)
+                # print(effect)
+                # if effect == "Invincible":
+                    # self.status = "Invincible"
             if str(hits[0].__class__.__name__) == "Mob":
                  print(hits[0].__class__.__name__)
-                 print("Collided with mob")
-                 self.hitpoints -= 1       
+                 print("-1 health")
+                      
                  
 
     #UPDATE THE UPDATE
@@ -101,21 +107,28 @@ class Player(pg.sprite.Sprite):
         # self.rect.x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
 
+#create class mob
 class Mob(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.mobs
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
+        # self.image = game.mob_img
         self.image = pg.Surface((TILESIZE, TILESIZE))
         self.image.fill(PINK)
         self.rect = self.image.get_rect()
-        self.x = x
-        self.y = y
-        self.vx, self.vy = 100, 100
-        self.x = x * TILESIZE
-        self.y = y * TILESIZE
-        self.speed = 1
+        # self.hit_rect = MOB_HIT_RECT.copy()
+        # self.hit_rect.center = self.rect.center
+        self.pos = vec(x, y) * TILESIZE
+        self.vel = vec(0, 0)
+        self.acc = vec(0, 0)
+        self.rect.center = self.pos
+        self.rot = 0
+        # added
+        self.speed = 150
+        # self.health = MOB_HEALTH
 
+#create class wall
 class Wall(pg.sprite.Sprite):
     def __init__(self, game, x, y):
         self.groups = game.all_sprites, game.walls
