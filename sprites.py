@@ -104,7 +104,7 @@ class Player(pg.sprite.Sprite):
         self.collide_with_group(self.game.moneybag, True)
         self.collide_with_group(self.game.power_ups, True)
         self.collide_with_group(self.game.mobs, False)
-        # self.rect.x = self.x * TILESIZE
+        # self..x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
 
 #create class mob
@@ -126,6 +126,7 @@ class Mob(pg.sprite.Sprite):
         self.rot = 0
         # added
         self.speed = 150
+        self.chasing = True
         # self.health = MOB_HEALTH
 
 #create class wall

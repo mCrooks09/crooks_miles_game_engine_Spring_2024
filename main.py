@@ -2,9 +2,9 @@
 
 # we are importing other game files
 '''
-diferent enemies
+hostile enemy
 game start/game over 
-shoot enemies
+speed potion
 '''
 import pygame as pg
 from settings import *

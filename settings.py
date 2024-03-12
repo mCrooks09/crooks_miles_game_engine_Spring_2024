@@ -16,5 +16,7 @@ PINK = (255, 192, 203)
 
 PLAYER_SPEED = 300
 
+MOB_SPEED = 150
+
 
 
