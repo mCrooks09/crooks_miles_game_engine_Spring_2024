@@ -108,6 +108,8 @@ class Game:
         text_rect.topleft = (x*TILESIZE,y*TILESIZE)
         surface.blit(text_surface, text_rect)
 
+
+
 # coin counter in corner
     def draw(self):
         self.screen.fill(BGCOLOR)
@@ -136,13 +138,28 @@ class Game:
                 # if event.type == pg.KEYDOWN:
                 #     if event.key == pg.K_DOWN:
                 #         self.player.move(dy=1)
+                    
     def show_start_screen(self):
-        pass
-    def show_go_screen(self):
-        pass
+        self.screen.fill(BGCOLOR)
+        self.draw_text(self.screen, "Jake Run" , 24, WHITE, WIDTH/2, HEIGHT/2)
+        self.draw_text(self.screen, "Press any key to start" , 24, WHITE, WIDTH/2, HEIGHT/2)
+        pg.display.flip()
+        self.wait_for_key()
+
+    def wait_for_key(self):
+        waiting = True
+        while waiting:
+            self.clock.tick(FPS)
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    waiting = False
+                    self.quit()
+                if event.type == pg.KEYUP:
+                    waiting = False
+
 ####################### Instantiate game... ###################
 g = Game()
-# g.show_go_screen()
+g.show_start_screen()
 while True:
     g.new()
     g.run()
