@@ -139,10 +139,11 @@ class Game:
                 #     if event.key == pg.K_DOWN:
                 #         self.player.move(dy=1)
                     
+   # start screen attributes                 
     def show_start_screen(self):
         self.screen.fill(ORANGE)
-        self.draw_text(self.screen, "Jake Run" , 24, WHITE, WIDTH/2, HEIGHT/2)
-        self.draw_text(self.screen, "Press any key to start" , 24, PINK, WIDTH/2, HEIGHT/2)
+        self.draw_text(self.screen, "Jake Run" , 100, WHITE, WIDTH/3000 , HEIGHT/430)
+        self.draw_text(self.screen, "Press any key to start" , 100, PINK, WIDTH/3000, HEIGHT/100)
         pg.display.flip()
         self.wait_for_key()
     # def show_end_screen(self):
