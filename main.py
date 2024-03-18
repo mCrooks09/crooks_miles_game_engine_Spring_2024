@@ -93,6 +93,8 @@ class Game:
         pass
     def update(self):
         self.all_sprites.update()
+        if self.moneybag == 25:
+            self.playing = False
     
     # def draw_grid(self):
         # for x in range(0, WIDTH, TILESIZE):
@@ -142,17 +144,19 @@ class Game:
    # start screen attributes                 
     def show_start_screen(self):
         self.screen.fill(ORANGE)
-        self.draw_text(self.screen, "Jake Run" , 100, WHITE, WIDTH/3000 , HEIGHT/430)
-        self.draw_text(self.screen, "Press any key to start" , 100, PINK, WIDTH/3000, HEIGHT/100)
+        self.draw_text(self.screen, "Jake Run" , 150, WHITE, 14, 1)
+        self.draw_text(self.screen, "Collect All The Coins" , 100, WHITE, 10, 6)
+        self.draw_text(self.screen, "Press any key to start" , 100, PINK, 9, 10)
         pg.display.flip()
         self.wait_for_key()
-    # def show_end_screen(self):
-    #     if not self.playing:
-    #         return
-    #     self.screen.fill(ORANGE)
-    #     self.draw_text(self.screen, "YOU DIED", 24, WHITE, WIDTH/2, HEIGHT/2)
-    #     pg.display.flip()
-    #     self.wait_for_key
+        
+    def show_go_screen(self):
+        if self.moneybag == 25:
+         return
+        self.screen.fill(ORANGE)
+        self.draw_text(self.screen, "YOU WIN", 100, WHITE, WIDTH/3000, HEIGHT/160)
+        pg.display.flip()
+        self.wait_for_key()
 
     def wait_for_key(self):
         waiting = True
@@ -168,8 +172,7 @@ class Game:
 ####################### Instantiate game... ###################
 g = Game()
 g.show_start_screen()
-# g.show_end_screen()
 while True:
     g.new()
     g.run()
-    # g.show_go_screen()
+    g.show_go_screen()

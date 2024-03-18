@@ -97,7 +97,8 @@ class Player(pg.sprite.Sprite):
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
-            # if str(hits[0].__class__.__name__) == "Mob":
+            if str(hits[0].__class__.__name__) == "Mob":
+                self.quit()
                 
                 
                 
@@ -109,7 +110,7 @@ class Player(pg.sprite.Sprite):
                     # self.status = "Invincible"
             if str(hits[0].__class__.__name__) == "Mob":
                  print(hits[0].__class__.__name__)
-                 print("-1 health")
+                 print("YOU DIED")
                       
                  
 
@@ -148,9 +149,9 @@ class Mob(pg.sprite.Sprite):
         self.acc = vec(0, 0)
         self.rect.center = self.pos
         self.rot = 0
-        self.chase_distance = 375
+        self.chase_distance = 350
         # added
-        self.speed = 200
+        self.speed = 500
         self.chasing = False
         
     def sensor(self):
