@@ -140,11 +140,18 @@ class Game:
                 #         self.player.move(dy=1)
                     
     def show_start_screen(self):
-        self.screen.fill(BGCOLOR)
+        self.screen.fill(ORANGE)
         self.draw_text(self.screen, "Jake Run" , 24, WHITE, WIDTH/2, HEIGHT/2)
-        self.draw_text(self.screen, "Press any key to start" , 24, WHITE, WIDTH/2, HEIGHT/2)
+        self.draw_text(self.screen, "Press any key to start" , 24, PINK, WIDTH/2, HEIGHT/2)
         pg.display.flip()
         self.wait_for_key()
+    # def show_end_screen(self):
+    #     if not self.playing:
+    #         return
+    #     self.screen.fill(ORANGE)
+    #     self.draw_text(self.screen, "YOU DIED", 24, WHITE, WIDTH/2, HEIGHT/2)
+    #     pg.display.flip()
+    #     self.wait_for_key
 
     def wait_for_key(self):
         waiting = True
@@ -160,6 +167,7 @@ class Game:
 ####################### Instantiate game... ###################
 g = Game()
 g.show_start_screen()
+# g.show_end_screen()
 while True:
     g.new()
     g.run()

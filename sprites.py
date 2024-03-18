@@ -97,6 +97,10 @@ class Player(pg.sprite.Sprite):
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
+            # if str(hits[0].__class__.__name__) == "Mob":
+                
+                
+                
             # if str(hits[0].__class__.__name__) == "PowerUp":
                 # print(hits[0].__class__.__name__)
                 # effect = (POWER_UP_EFFECTS)
@@ -144,9 +148,9 @@ class Mob(pg.sprite.Sprite):
         self.acc = vec(0, 0)
         self.rect.center = self.pos
         self.rot = 0
-        self.chase_distance = 500
+        self.chase_distance = 375
         # added
-        self.speed = 150
+        self.speed = 200
         self.chasing = False
         
     def sensor(self):
