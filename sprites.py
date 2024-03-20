@@ -46,7 +46,7 @@ class Player(pg.sprite.Sprite):
         self.hitpoints = 100
         self.cooling = False
         self.pos = vec(0,0)
-
+    # new movement
     def get_keys(self):
         self.vx, self.vy = 0, 0
         keys = pg.key.get_pressed()
@@ -58,6 +58,7 @@ class Player(pg.sprite.Sprite):
             self.vy = -self.speed
         if keys[pg.K_DOWN] or keys[pg.K_s]:
             self.vy = self.speed
+    # wall collision attributes
     def collide_with_walls(self, dir):
         if dir == 'x':
             hits = pg.sprite.spritecollide(self, self.game.walls, False )
@@ -77,19 +78,14 @@ class Player(pg.sprite.Sprite):
                     self.y = hits[0].rect.bottom
                 self.vy = 0
                 self.rect.y = self.y
-
+    # speed potion settings
     def speed_potion(self):
         hits = pg.sprite.spritecollide(self, self.game.potion, True)
         if hits:
             #increase speed
-            self.speed += 500
+            self.speed += 450
 
-
-    # old motion
-    # def move(self, dx=0, dy=0):
-    #     self.x += dx
-    #     self.y += dy
-
+    # classes that affect game
     def collide_with_group(self, group, kill):
         hits = pg.sprite.spritecollide(self, group, kill)
         if hits:
@@ -98,7 +94,7 @@ class Player(pg.sprite.Sprite):
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
             if str(hits[0].__class__.__name__) == "Mob":
-                self.quit()
+                self.show_go_screen()
                 
                 
                 
@@ -125,6 +121,7 @@ class Player(pg.sprite.Sprite):
         self.collide_with_walls('x')
         self.rect.y = self.y
         self.collide_with_walls('y')
+        # classes that can or cant be collided with
         self.collide_with_group(self.game.coins, True)
         self.collide_with_group(self.game.potions, True)
         self.collide_with_group(self.game.moneybag, True)
@@ -154,6 +151,7 @@ class Mob(pg.sprite.Sprite):
         self.speed = 500
         self.chasing = False
         
+    # instansiate chasing 
     def sensor(self):
         if abs(self.rect.x - self.game.player.rect.x) < self.chase_distance and abs(self.rect.y - self.game.player.rect.y) < self.chase_distance:
             self.chasing = True

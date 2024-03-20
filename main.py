@@ -18,11 +18,11 @@ class Game:
     # behold the methods
     def __init__(self):
         pg.init()
-        # 
+        # creating the screen axis
         self.screen = pg.display.set_mode((WIDTH, HEIGHT))
-        # 
-        pg.display.set_caption("My First Video Game")
-        # 
+        # title for game
+        pg.display.set_caption("Jake Run")
+        # creating clock for ticks
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
         self.running = True
@@ -43,6 +43,7 @@ class Game:
                 print(line)
                 self.map_data.append(line)
                 print(self.map_data)
+    # making classes have player attributes            
     def new(self):
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
@@ -56,6 +57,8 @@ class Game:
         # self.all_sprites.add(self.player)
         # for x in range(10, 20):
         #     Wall(self, x, 5)
+
+        # now able to place objects on map with one symbol
         for row, tiles in enumerate(self.map_data):
             print(row)
             for col, tile in enumerate(tiles):
@@ -84,7 +87,7 @@ class Game:
             self.update()
             # this output
             self.draw()
-
+    # lets you close the game
     def quit(self):
         pg.quit()
         sys.exit()
@@ -93,8 +96,8 @@ class Game:
         pass
     def update(self):
         self.all_sprites.update()
-        if self.moneybag == 25:
-            self.playing = False
+        if self.player.moneybag == 25:
+            self.show_go_screen()
     
     # def draw_grid(self):
         # for x in range(0, WIDTH, TILESIZE):
@@ -102,6 +105,7 @@ class Game:
         # for y in range(0, HEIGHT, TILESIZE):
             # pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
+    # Creating text attributes
     def draw_text(self, surface, text, size, color, x, y):
         font_name = pg.font.match_font('arial')
         font = pg.font.Font(font_name, size)
@@ -144,6 +148,7 @@ class Game:
    # start screen attributes                 
     def show_start_screen(self):
         self.screen.fill(ORANGE)
+        # text on screen
         self.draw_text(self.screen, "Jake Run" , 150, WHITE, 14, 1)
         self.draw_text(self.screen, "Collect All The Coins" , 100, WHITE, 10, 6)
         self.draw_text(self.screen, "Press any key to start" , 100, PINK, 9, 10)
@@ -151,13 +156,13 @@ class Game:
         self.wait_for_key()
         
     def show_go_screen(self):
-        if self.moneybag == 25:
-         return
         self.screen.fill(ORANGE)
+        # text for win
         self.draw_text(self.screen, "YOU WIN", 100, WHITE, WIDTH/3000, HEIGHT/160)
         pg.display.flip()
         self.wait_for_key()
 
+    #lets game start with one key
     def wait_for_key(self):
         waiting = True
         while waiting:
@@ -168,6 +173,7 @@ class Game:
                     self.quit()
                 if event.type == pg.KEYUP:
                     waiting = False
+                    self.new()
 
 ####################### Instantiate game... ###################
 g = Game()
