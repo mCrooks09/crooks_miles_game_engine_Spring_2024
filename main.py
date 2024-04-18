@@ -6,10 +6,17 @@ hostile enemy
 game start/game over 
 speed potion
 '''
+
+'''
+BETA GOAL:
+
+Kill the enemies after collecting coins
+
+'''
 import pygame as pg
 from settings import *
 from sprites import *
-import sys
+import sys 
 from random import randint
 from os import path
 
