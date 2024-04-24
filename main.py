@@ -60,6 +60,7 @@ class Game:
         self.potions = pg.sprite.Group()
         self.mobs = pg.sprite.Group()
         self.hitpoints = pg.sprite.Group()
+        
         # self.player = Player(self, 10, 10)
         # self.all_sprites.add(self.player)
         # for x in range(10, 20):
@@ -156,7 +157,7 @@ class Game:
     def show_start_screen(self):
         self.screen.fill(ORANGE)
         # text on screen
-        self.draw_text(self.screen, "Jake Run" , 150, WHITE, 14, 1)
+        self.draw_text(self.screen, "Lil dude" , 150, WHITE, 13, 1)
         self.draw_text(self.screen, "Collect All The Coins" , 100, WHITE, 10, 6)
         self.draw_text(self.screen, "Press any key to start" , 100, PINK, 9, 10)
         pg.display.flip()
@@ -168,6 +169,7 @@ class Game:
         self.draw_text(self.screen, "YOU WIN", 100, WHITE, WIDTH/3000, HEIGHT/160)
         pg.display.flip()
         self.wait_for_key()
+        
 
     #lets game start with one key
     def wait_for_key(self):
@@ -181,6 +183,9 @@ class Game:
                 if event.type == pg.KEYUP:
                     waiting = False
                     self.new()
+    def wait(self):
+        wait = True
+        wait (5000000)
 
 ####################### Instantiate game... ###################
 g = Game()

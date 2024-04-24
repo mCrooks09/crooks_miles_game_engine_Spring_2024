@@ -47,7 +47,7 @@ class Spritesheet:
         image = pg.Surface((width, height))
         image.blit(self.spritesheet, (0, 0), (x, y, width, height))
         # image = pg.transform.scale(image, (width, height))
-        image = pg.transform.scale(image, (width * 4, height * 4))
+        image = pg.transform.scale(image, (width * 1.2, height * 1.2))
         return image
 
 # write a player class
@@ -56,7 +56,7 @@ class Player(pg.sprite.Sprite):
         self.groups = game.all_sprites
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
-        # self.image = pg.Surface((TILESIZE, TILESIZE))
+        self.image = pg.Surface((TILESIZE/2, TILESIZE/2))
         # self.image = game.player_img
         self.spritesheet = Spritesheet(path.join(img_folder, 'idle_frames.png'))
         self.load_images()
@@ -117,7 +117,7 @@ class Player(pg.sprite.Sprite):
     # wall collision attributes
             
     def get_image(self, x, y, width, height):
-        image = pg.Surface((width, height))
+        image = pg.Surface((width/3, height/3))
         
     
     def collide_with_walls(self, dir):
@@ -155,7 +155,8 @@ class Player(pg.sprite.Sprite):
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
             if str(hits[0].__class__.__name__) == "Mob":
-                self.show_go_screen()
+               self.show_go_screen()
+            
                 
                 
                 
@@ -209,7 +210,7 @@ class Mob(pg.sprite.Sprite):
         self.rot = 0
         self.chase_distance = 350
         # added
-        self.speed = 200
+        self.speed = 400
         self.chasing = False
         
     # instansiate chasing 
