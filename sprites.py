@@ -49,7 +49,7 @@ class Spritesheet:
         # image = pg.transform.scale(image, (width, height))
         image = pg.transform.scale(image, (width * 1.2, height * 1.2))
         return image
-
+    
 # write a player class
 class Player(pg.sprite.Sprite):
     def __init__(self, game, x, y):
@@ -173,6 +173,12 @@ class Player(pg.sprite.Sprite):
     
     #UPDATE THE UPDATE
     def update(self):
+        if self.moneybag >= 25:
+            # Increase player size
+            self.image = pg.transform.scale(self.image, (WIDTH * 0.1, HEIGHT * 0.1))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
+            self.rect = self.image.get_rect()  # Update player's rect
+            self.speed = 100
+
         self.animate()
         # self.rect.x = self.x
         # self.rect.y = self.y
@@ -195,6 +201,7 @@ class Player(pg.sprite.Sprite):
         # Check if moneybag has reached 25
         if self.moneybag >= 25:
             self.collide_with_group(self.game.mobs, True)
+        
 
 #create class mob
 class Mob(pg.sprite.Sprite):

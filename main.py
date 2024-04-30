@@ -107,7 +107,7 @@ class Game:
         # Check if moneybag has reached 25
         if self.moneybag == 25:
             # Increase player size
-            self.image = pg.transform.scale(self.image, (WIDTH*2, HEIGHT*2))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
+            self.image = pg.transform.scale(self.image, (WIDTH * 0.1, HEIGHT * 0.1))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
             self.rect = self.image.get_rect()  # Update player's rect
             # Reset moneybag count to avoid resizing repeatedly
             self.moneybag = 0
