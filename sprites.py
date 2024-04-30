@@ -154,8 +154,8 @@ class Player(pg.sprite.Sprite):
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
-            if str(hits[0].__class__.__name__) == "Mob":
-               self.show_go_screen()
+            # if str(hits[0].__class__.__name__) == "Mob":
+            #    self.show_go_screen()
             
                 
                 
@@ -191,6 +191,10 @@ class Player(pg.sprite.Sprite):
         self.collide_with_group(self.game.mobs, False)
         # self..x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
+    
+        # Check if moneybag has reached 25
+        if self.moneybag >= 25:
+            self.collide_with_group(self.game.mobs, True)
 
 #create class mob
 class Mob(pg.sprite.Sprite):
