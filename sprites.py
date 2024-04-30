@@ -76,6 +76,7 @@ class Player(pg.sprite.Sprite):
         # needed for animated sprite
         self.walking = False
         self.moneybag = 0
+        #speed
         self.speed = 300
         self.status = ""
         self.hitpoints = 100
@@ -155,7 +156,7 @@ class Player(pg.sprite.Sprite):
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
             # if str(hits[0].__class__.__name__) == "Mob":
-            #    self.show_go_screen()
+            #   self.show_go_screen()
             
                 
                 
@@ -177,7 +178,8 @@ class Player(pg.sprite.Sprite):
             # Increase player size
             self.image = pg.transform.scale(self.image, (WIDTH * 0.1, HEIGHT * 0.1))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
             self.rect = self.image.get_rect()  # Update player's rect
-            self.speed = 100
+            #reset speed
+            self.speed = 300
 
         self.animate()
         # self.rect.x = self.x
@@ -198,7 +200,7 @@ class Player(pg.sprite.Sprite):
         # self..x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
     
-        # Check if moneybag has reached 25
+        # if moneybag is 25 change the status of collision
         if self.moneybag >= 25:
             self.collide_with_group(self.game.mobs, True)
         
