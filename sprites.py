@@ -178,7 +178,6 @@ class Player(pg.sprite.Sprite):
             # Increase player size
             self.image = pg.transform.scale(self.image, (WIDTH * 0.1, HEIGHT * 0.1))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
             self.rect = self.image.get_rect()  # Update player's rect
-            #reset speed
             self.speed = 300
 
         self.animate()
