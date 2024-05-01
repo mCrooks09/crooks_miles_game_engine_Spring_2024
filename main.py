@@ -190,6 +190,7 @@ class Game:
                 if event.type == pg.KEYUP:
                     waiting = False
                     self.new()
+                
     def wait(self):
         wait = True
         wait (5000000)

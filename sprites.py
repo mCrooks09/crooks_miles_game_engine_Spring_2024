@@ -155,8 +155,11 @@ class Player(pg.sprite.Sprite):
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
-            # if str(hits[0].__class__.__name__) == "Mob":
-            #   self.show_go_screen()
+                
+            if self.moneybag <=24:
+                if str(hits[0].__class__.__name__) == "Mob":
+                    self.show_go_screen()
+            
             
                 
                 
@@ -179,6 +182,9 @@ class Player(pg.sprite.Sprite):
             self.image = pg.transform.scale(self.image, (WIDTH * 0.1, HEIGHT * 0.1))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
             self.rect = self.image.get_rect()  # Update player's rect
             self.speed = 300
+        # if self.moneybag <=24:
+        #     if str(hits[0].__class__.__name__) == "Mob":
+        #       self.show_go_screen()
 
         self.animate()
         # self.rect.x = self.x
