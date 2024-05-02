@@ -9,6 +9,8 @@ from random import randint
 
 vec =pg.math.Vector2
 
+
+
 # added chaseing atributes
 def collide_with_walls(sprite, group, dir):
     if dir == 'x':
@@ -83,6 +85,7 @@ class Player(pg.sprite.Sprite):
         self.cooling = False
         self.pos = vec(0,0)
         self.dir = vec(0,0)
+        
     def load_images(self):
         self.standing_frames = [self.spritesheet.get_image(0, 0, 32, 32),
                                 self.spritesheet.get_image(32, 0, 32, 32)]
@@ -155,36 +158,30 @@ class Player(pg.sprite.Sprite):
                 self.moneybag += 1
             if str(hits[0].__class__.__name__) == "Potions":
                 self.speed += 305 
-                
-            if self.moneybag <=24:
-                if str(hits[0].__class__.__name__) == "Mob":
-                    self.show_go_screen()
-            
-            
-                
-                
-                
-            # if str(hits[0].__class__.__name__) == "PowerUp":
-                # print(hits[0].__class__.__name__)
-                # effect = (POWER_UP_EFFECTS)
-                # print(effect)
-                # if effect == "Invincible":
-                    # self.status = "Invincible"
             if str(hits[0].__class__.__name__) == "Mob":
                  print(hits[0].__class__.__name__)
                  print("YOU DIED")
+            if self.moneybag <=24:
+                if str(hits[0].__class__.__name__) == "Mob":
+                    self.show_start_screen()
 
+               
+            
     
+                    
     #UPDATE THE UPDATE
     def update(self):
         if self.moneybag >= 25:
-            # Increase player size
-            self.image = pg.transform.scale(self.image, (WIDTH * 0.1, HEIGHT * 0.1))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
+            # Save old position
+            old_center = self.rect.center
+        
+            # Increase player size (chat gpt help)
+            self.image = pg.transform.scale(self.image, (int(WIDTH * 0.1), int(HEIGHT * 0.1)))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
             self.rect = self.image.get_rect()  # Update player's rect
-            self.speed = 300
-        # if self.moneybag <=24:
-        #     if str(hits[0].__class__.__name__) == "Mob":
-        #       self.show_go_screen()
+            self.speed = 300        
+            # Restore position
+            self.rect.center = old_center
+        
 
         self.animate()
         # self.rect.x = self.x
@@ -228,7 +225,7 @@ class Mob(pg.sprite.Sprite):
         self.rot = 0
         self.chase_distance = 350
         # added
-        self.speed = 400
+        self.speed = 350
         self.chasing = False
         
     # instansiate chasing 

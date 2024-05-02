@@ -113,12 +113,6 @@ class Game:
             self.moneybag = 0
 
             # self.show_go_screen()
-    
-    # def draw_grid(self):
-        # for x in range(0, WIDTH, TILESIZE):
-            # pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
-        # for y in range(0, HEIGHT, TILESIZE):
-            # pg.draw.line(self.screen, LIGHTGREY, (0, y), (WIDTH, y))
 
     # Creating text attributes
     def draw_text(self, surface, text, size, color, x, y):
@@ -169,13 +163,15 @@ class Game:
         self.draw_text(self.screen, "Press any key to start" , 100, PINK, 9, 10)
         pg.display.flip()
         self.wait_for_key()
-        
+
     def show_go_screen(self):
         self.screen.fill(ORANGE)
         # text for win
         self.draw_text(self.screen, "YOU WIN", 100, WHITE, WIDTH/3000, HEIGHT/160)
         pg.display.flip()
         self.wait_for_key()
+     
+
         
 
     #lets game start with one key
@@ -190,7 +186,7 @@ class Game:
                 if event.type == pg.KEYUP:
                     waiting = False
                     self.new()
-                
+            
     def wait(self):
         wait = True
         wait (5000000)
