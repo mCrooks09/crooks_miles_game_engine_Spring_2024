@@ -79,7 +79,7 @@ class Player(pg.sprite.Sprite):
         self.walking = False
         self.moneybag = 0
         #speed
-        self.speed = 300
+        self.speed = 290
         self.status = ""
         self.hitpoints = 100
         self.cooling = False
@@ -286,7 +286,8 @@ class Potions(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(RED)
+        self.image = game.potions_img
+        # self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
