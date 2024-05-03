@@ -40,6 +40,7 @@ class Game:
         img_folder = path.join(game_folder, 'images')
         self.player_img = pg.image.load(path.join(img_folder, 'jake.png')).convert_alpha()
         self.potions_img = pg.image.load(path.join(img_folder, 'speed_potion.png')).convert_alpha()
+        self.coin_img = pg.image.load(path.join(img_folder, 'chicken.png')).convert_alpha()
         self.map_data = []
         '''
         The with statement is a context manager in Python. 
