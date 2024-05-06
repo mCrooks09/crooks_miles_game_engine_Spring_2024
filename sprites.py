@@ -171,10 +171,10 @@ class Player(pg.sprite.Sprite):
                     
     #UPDATE THE UPDATE
     def update(self):
+        # copied and modified from chat gpt
         if self.moneybag >= 25:
             # Save old position
-            old_center = self.rect.center
-        
+            old_center = self.rect.center       
             # Increase player size (chat gpt help)
             self.image = pg.transform.scale(self.image, (int(WIDTH * 0.1), int(HEIGHT * 0.1)))  # Replace NEW_WIDTH and NEW_HEIGHT with the desired size
             self.rect = self.image.get_rect()  # Update player's rect
@@ -214,7 +214,8 @@ class Mob(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(PINK)
+        self.image = game.mob_img
+        # self.image.fill(PINK)
         self.rect = self.image.get_rect()
         # self.hit_rect = MOB_HIT_RECT.copy()
         # self.hit_rect.center = self.rect.center
@@ -262,7 +263,8 @@ class Wall(pg.sprite.Sprite):
         pg.sprite.Sprite.__init__(self, self.groups)
         self.game = game
         self.image = pg.Surface((TILESIZE, TILESIZE))
-        self.image.fill(YELLOW)
+        self.image = game.wall_img
+        # self.image.fill(YELLOW)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y

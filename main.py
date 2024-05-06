@@ -35,12 +35,17 @@ class Game:
         self.running = True
         # later on we'll story game info with this
         self.load_data()
+        
     def load_data(self):
         game_folder = path.dirname(__file__)
         img_folder = path.join(game_folder, 'images')
+        self.background_img = pg.image.load(path.join(img_folder, 'carpet.png')).convert_alpha()
+        self.background_rect = self.background_img.get_rect()
         self.player_img = pg.image.load(path.join(img_folder, 'jake.png')).convert_alpha()
         self.potions_img = pg.image.load(path.join(img_folder, 'speed_potion.png')).convert_alpha()
         self.coin_img = pg.image.load(path.join(img_folder, 'chicken.png')).convert_alpha()
+        self.mob_img = pg.image.load(path.join(img_folder, 'shark.png')).convert_alpha()
+        self.wall_img = pg.image.load(path.join(img_folder, 'wood.png')).convert_alpha()
         self.map_data = []
         '''
         The with statement is a context manager in Python. 
@@ -160,9 +165,9 @@ class Game:
     def show_start_screen(self):
         self.screen.fill(ORANGE)
         # text on screen
-        self.draw_text(self.screen, "Lil dude" , 150, WHITE, 13, 1)
-        self.draw_text(self.screen, "Collect All The Coins" , 100, WHITE, 10, 6)
-        self.draw_text(self.screen, "Press any key to start" , 100, PINK, 9, 10)
+        self.draw_text(self.screen, "Chicken Run" , 150, WHITE, 12, 1)
+        self.draw_text(self.screen, "Collect All The Chicken" , 100, WHITE, 10, 6)
+        self.draw_text(self.screen, "Press any key to start" , 100, PINK, 10, 10)
         pg.display.flip()
         self.wait_for_key()
 
