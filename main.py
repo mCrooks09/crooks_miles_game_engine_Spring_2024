@@ -2,9 +2,12 @@
 
 # we are importing other game files
 '''
+play here{ww}
+'''
+'''
 hostile enemy
 game start/game over 
-speed potion
+speed potions
 '''
 
 '''
@@ -165,7 +168,7 @@ class Game:
     def show_start_screen(self):
         self.screen.fill(ORANGE)
         # text on screen
-        self.draw_text(self.screen, "Chicken Run" , 150, WHITE, 12, 1)
+        self.draw_text(self.screen, "KFC RUN" , 150, WHITE, 14, 1)
         self.draw_text(self.screen, "Collect All The Chicken" , 100, WHITE, 10, 6)
         self.draw_text(self.screen, "Press any key to start" , 100, PINK, 10, 10)
         pg.display.flip()

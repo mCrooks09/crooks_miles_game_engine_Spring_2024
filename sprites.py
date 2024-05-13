@@ -78,6 +78,7 @@ class Player(pg.sprite.Sprite):
         # needed for animated sprite
         self.walking = False
         self.moneybag = 0
+        self.kills = 0
         #speed
         self.speed = 290
         self.status = ""
@@ -163,7 +164,8 @@ class Player(pg.sprite.Sprite):
                  print("YOU DIED")
             if self.moneybag <=24:
                 if str(hits[0].__class__.__name__) == "Mob":
-                    self.show_start_screen()
+                    self.poop()
+            
 
                
             
@@ -201,10 +203,11 @@ class Player(pg.sprite.Sprite):
         self.collide_with_group(self.game.mobs, False)
         # self..x = self.x * TILESIZE
         # self.rect.y = self.y * TILESIZE
-    
+
         # if moneybag is 25 change the status of collision
         if self.moneybag >= 25:
             self.collide_with_group(self.game.mobs, True)
+           
         
 
 #create class mob
